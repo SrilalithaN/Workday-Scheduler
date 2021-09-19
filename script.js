@@ -1,19 +1,22 @@
-// creating variable for cuurent date
+// creating variable for current date
+var now = moment();
+
 var currentDate = moment().format("DD MMM YYYY");
+
 // adding current date to the page
 $("#currentDay").text("Today's Date: " + currentDate);
 
 $(document).ready(function () {
   // loop for diplaying the saved tasks by getting them from local storage
-  var timeArr = $(".hour").toArray();
+  timeArr = $(".hour").toArray();
   for (var i = 0; i < timeArr.length; i++) {
     $(timeArr[i])
-      .siblings(".textarea")
+      .siblings("textarea")
       .text(localStorage.getItem($(timeArr[i]).attr("data-time")));
   }
 });
 
-//loop to print the time,task and save buttons for 9am to 5pm
+//loop to print the time-slot,tasks and save buttons for 9am to 5pm
 
 for (var i = 0; i < 9; i++) {
   //making a row for every-time slot
@@ -38,4 +41,24 @@ for (var i = 0; i < 9; i++) {
   $(rowBlock).append(timeSlot);
   $(timeSlot).after(tasks);
   $(tasks).after(saveButton);
+
+  //colour coding the rows to indicate past,present and future times
+  //if time is same as current-time display the block in red
+  if (now.isSame(moment("9.00 AM", "hh:mm A").add(i, "hours"), "hour")) {
+    $(tasks).addClass("present");
+  } // if time is in past ,display the block in gray colour
+  else if (now.isAfter(moment("9.00 AM", "hh:mm A").add(i, "hours"), "hour")) {
+    $(tasks).addClass("past");
+  }
+  // if time is in future, display the block green
+  else if (now.isBefore(moment("9.00 AM", "hh:mm A").add(i, "hours"), "hour")) {
+    $(tasks).addClass("future");
+  }
 }
+//adding click event to save button to store data in local storage on click.
+$(".saveBtn").on("click", function () {
+  localStorage.setItem(
+    $(this).siblings("div.hour").attr("data-time"),
+    $(this).siblings("textarea").val()
+  );
+});
