@@ -9,12 +9,12 @@
 ## SKILLS
 
 - The application uses knowledge of the following technologies
-  ** HTML
-  ** CSS
-  ** JavaScript
-  ** BootStrap
-  ** JQuery
-  ** Moment.js
+  - HTML
+  - CSS
+  - JavaScript
+  * BootStrap
+  - JQuery
+  - Moment.js
 
 ## ASSETS
 
@@ -22,7 +22,9 @@
 
 - The following is the demo of the application ![](assets/screenshots/demo-gif.gif)
 
+* The following is the link to the deployed code for the application : https://github.com/SrilalithaN/Workday-Scheduler
 
+* The following is the link to the deployed page of the application: https://srilalithan.github.io/Workday-Scheduler/
 
 ## CREDITS
 
